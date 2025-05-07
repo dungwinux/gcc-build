@@ -45,7 +45,7 @@ jobs:
           --no-extras
           --no-bootstrap
           --no-gcc-lto
-          --provided-toolchain=C:\mingw64\bin
+          --provided-toolchain=C:/mingw64/bin
       - name: Upload result
         uses: ncipollo/release-action@v1
         if: ${{ github.ref == 'refs/heads/main' }}

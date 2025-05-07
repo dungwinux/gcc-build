@@ -23,7 +23,7 @@ jobs:
           repository: 'niXman/mingw-builds'
           ref: 'develop'
       - name: build
-        shell: msys2bash.cmd -e {0}
+        shell: C:\shells\msys2bash.cmd {0}
         run: >-
           ./build
           --mode=gcc-${{ env.VERSION }}

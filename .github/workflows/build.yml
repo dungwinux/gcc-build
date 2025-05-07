@@ -22,9 +22,9 @@ jobs:
         with:
           repository: 'niXman/mingw-builds'
           ref: 'develop'
-      - name: update
-        shell: C:\shells\msys2bash.cmd {0}
-        run: 'pacman -Suy'
+      - name: Get logviewer (weird req.)
+        shell: cmd
+        run: 'choco install notepadplusplus'
       - name: build
         shell: C:\shells\msys2bash.cmd {0}
         run: >-
@@ -45,6 +45,7 @@ jobs:
           --no-extras
           --no-bootstrap
           --no-gcc-lto
+          --provided-toolchain=C:\mingw64\bin
       - name: Upload result
         uses: ncipollo/release-action@v1
         if: ${{ github.ref == 'refs/heads/main' }}

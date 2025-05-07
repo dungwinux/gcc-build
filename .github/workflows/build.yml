@@ -10,7 +10,7 @@ on:
         default: '15.1.0'
 
 env:
-  VERSION: ${{ github.event.inputs.customver }}
+  VERSION: ${{ github.event.inputs.customver || '15.1.0' }}
 jobs:
   build:
     runs-on: windows-2025

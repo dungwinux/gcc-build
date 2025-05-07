@@ -1,0 +1,53 @@
+name: GCC CICD
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      customver:
+        description: 'Set custom GCC version (default: 15.1.0)'
+        required: true
+        default: '15.1.0'
+
+env:
+  VERSION: ${{ github.event.inputs.customver }}
+jobs:
+  build:
+    runs-on: windows-2025
+    permissions:
+      contents: write
+    env:
+    steps:
+      - name: Get build script
+        uses: actions/checkout@v4
+        with:
+          repository: 'niXman/mingw-builds'
+          ref: '3990352'
+      - name: build
+        shell: msys2bash.cmd -e {0}
+        run: >-
+          ./build
+          --mode=gcc-${{ env.VERSION }}
+          --buildroot=/c/gcc
+          --jobs=4
+          --rev=${{ github.run_number }}
+          --with-default-msvcrt=ucrt
+          --rt-version=v12.0.0
+          --threads=mcf
+          --exceptions=seh
+          --arch=x86_64
+          --bin-compress
+          --enable-languages=c,c++
+          --cflags='-march=skylake -mtune=skylake'
+          --cxxflags='-march=skylake -mtune=skylake'
+      - name: Upload result
+        uses: ncipollo/release-action@v1
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          tag: b${{ github.run_number }}.${{ env.VERSION }}
+          artifacts: c:/gcc/archives/*.7z
+          artifactContentType: application/x-7z-compressed
+          body: "GCC release build"
+          prerelease: true
+          allowUpdates: true
+          artifactErrorsFailBuild: true

@@ -43,7 +43,6 @@ jobs:
           --cflags='-march=skylake -mtune=skylake'
           --cxxflags='-march=skylake -mtune=skylake'
           --no-extras
-          --no-bootstrap
           --no-gcc-lto
       - name: Upload result
         uses: ncipollo/release-action@v1

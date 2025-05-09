@@ -40,8 +40,6 @@ jobs:
           --arch=x86_64
           --bin-compress
           --enable-languages=c,c++
-          --cflags='-march=skylake -mtune=skylake'
-          --cxxflags='-march=skylake -mtune=skylake'
           --no-extras
           --no-gcc-lto
       - name: Upload result

@@ -29,9 +29,9 @@ jobs:
       - name: Apply patch to build script
         shell: cmd
         run: 'git apply -v mypatch\log_location.patch'
-      - name: Checking CPU architecture (for tuning)
-        shell: cmd
-        run: 'wmic CPU get NAME'
+      - name: Checking CPU architecture (for tuning and possible compile error)
+        shell: pwsh
+        run: 'Get-WmiObject Win32_Processor'
       - name: build
         shell: C:\shells\msys2bash.cmd {0}
         run: >-
@@ -49,6 +49,8 @@ jobs:
           --enable-languages=c,c++
           --no-extras
           --no-gcc-lto
+          --cflags='-march=skylake -mtune=skylake'
+          --cxxflags='-march=skylake -mtune=skylake'
       - name: Upload result
         uses: ncipollo/release-action@v1
         if: ${{ github.ref == 'refs/heads/main' }}

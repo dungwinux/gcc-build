@@ -49,8 +49,8 @@ jobs:
           --enable-languages=c,c++
           --no-extras
           --no-gcc-lto
-          --cflags='-march=skylake -mtune=skylake'
-          --cxxflags='-march=skylake -mtune=skylake'
+          --cflags='-mtune=skylake'
+          --cxxflags='-mtune=skylake'
       - name: Upload result
         uses: ncipollo/release-action@v1
         if: ${{ github.ref == 'refs/heads/main' }}

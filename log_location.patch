@@ -1,17 +1,15 @@
 diff --git a/library/config-win.sh b/library/config-win.sh
-index 979038c..caf21b1 100644
+index 979038c..0c857a9 100644
 --- a/library/config-win.sh
 +++ b/library/config-win.sh
-@@ -56,10 +56,8 @@ readonly REPOSITORY_FILE="$PROJECT_ROOT_URL/files/Toolchains targetting Win32/Pe
+@@ -56,9 +56,7 @@ readonly REPOSITORY_FILE="$PROJECT_ROOT_URL/files/Toolchains targetting Win32/Pe
  # **************************************************************************
  
  readonly LOGVIEWERS=(
 -	"c:/progra~2/notepad++/notepad++.exe"
 -	"c:/progra~1/notepad++/notepad++.exe"
 -	"$USERPROFILE/AppData/Local/Microsoft/WindowsApps/notepad"
--	"notepad"
 +	"cat",
-+    "notepad"
+ 	"notepad"
  )
  
- # **************************************************************************

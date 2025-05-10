@@ -27,8 +27,8 @@ jobs:
         with:
           path: mypatch
       - name: Apply patch to build script
-        shell: C:\shells\msys2bash.cmd {0}
-        run: 'patch -p1 mypatch\log_location.patch'
+        shell: cmd
+        run: 'git apply -v mypatch\log_location.patch'
       - name: Checking CPU architecture (for tuning)
         shell: cmd
         run: 'wmic CPU get NAME'

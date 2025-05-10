@@ -22,9 +22,16 @@ jobs:
         with:
           repository: 'niXman/mingw-builds'
           ref: 'develop'
-      - name: Get logviewer (weird req.)
+      - name: Get patch
+        uses: actions/checkout@v4
+        with:
+          path: mypatch
+      - name: Apply patch to build script
         shell: cmd
-        run: 'choco install notepadplusplus'
+        run: 'git apply mypatch\log_location.patch'
+      - name: Checking CPU architecture (for tuning)
+        shell: cmd
+        run: 'wmic CPU get NAME'
       - name: build
         shell: C:\shells\msys2bash.cmd {0}
         run: >-

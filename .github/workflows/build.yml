@@ -49,6 +49,7 @@ jobs:
           --enable-languages=c,c++
           --no-extras
           --no-gcc-lto
+          --logviewer-command=/usr/bin/cat
           --cflags='-march=skylake -mtune=skylake'
           --cxxflags='-march=skylake -mtune=skylake'
       - name: Upload result

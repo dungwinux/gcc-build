@@ -26,9 +26,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: mypatch
-      - name: Apply patch to build script
-        shell: cmd
-        run: 'git apply -v mypatch\log_location.patch'
       - name: Checking CPU architecture (for tuning and possible compile error)
         shell: pwsh
         run: 'Get-WmiObject Win32_Processor'
@@ -50,6 +47,7 @@ jobs:
           --no-extras
           --no-gcc-lto
           --logviewer-command=/usr/bin/cat
+          --wait-for-logviewer
           --cflags='-march=skylake -mtune=skylake'
           --cxxflags='-march=skylake -mtune=skylake'
       - name: Upload result

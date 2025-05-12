@@ -35,6 +35,7 @@ jobs:
       - name: build
         shell: C:\shells\msys2bash.cmd {0}
         run: >-
+          CFLAGS_FOR_TARGET="-march=skylake -mtune=skylake" CXXFLAGS_FOR_TARGET="-march=skylake -mtune=skylake"
           ./build
           --mode=gcc-${{ env.VERSION }}
           --buildroot=/c/gcc
